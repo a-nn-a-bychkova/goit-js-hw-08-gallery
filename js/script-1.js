@@ -83,7 +83,7 @@ function findPreviousImage(images) {
 }
 
 function onClickButtonCloseModal(evt) {
-  evt.preventDefault();
+  // evt.preventDefault();
   if (!evt.target.classList.contains('lightbox__button')) {
     return;
   }
