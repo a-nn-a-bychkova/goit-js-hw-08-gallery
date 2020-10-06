@@ -17,10 +17,6 @@ refs.galleryContainer.addEventListener('click', onContainerClickOpenModal);
 refs.lightboxCloseButtonEl.addEventListener('click', onClickButtonCloseModal);
 
 refs.lightboxOverlayEl.addEventListener('click', onOverlayClick);
-// console.log(lightboxButtonEl);
-
-// const option = images[0];
-// const imageEl = document.createElement('li');
 
 const listImagesMarkup = images
   .map(({ preview, original, description }) => {
@@ -55,11 +51,37 @@ function onContainerClickOpenModal(evt) {
   refs.lightboxImageEl.src = evt.target.dataset.source;
   refs.lightboxImageEl.alt = evt.target.alt;
   window.addEventListener('keydown', onEscKeyPress);
-  window.addEventListener('keydown', onRightKeyPress);
+  window.addEventListener('keydown', onKeyPress);
 }
 
-function onRightKeyPress(evt) {
+function onKeyPress(evt) {
+  console.log(evt.code);
+
   if (evt.code === 'ArrowRight') {
+    findNextImage(images);
+  } else if (evt.code === 'ArrowLeft') {
+    findPreviousImage(images);
+  } else {
+    return;
+  }
+}
+
+function findNextImage(images) {
+  for (let i = 0; i < images.length; i += 1) {
+    if (
+      refs.lightboxImageEl.src === images[i].original &&
+      i < images.length - 1
+    ) {
+      return (refs.lightboxImageEl.src = images[i + 1].original);
+    }
+  }
+}
+
+function findPreviousImage(images) {
+  for (let i = 0; i < images.length; i += 1) {
+    if (refs.lightboxImageEl.src === images[i].original && i > 0) {
+      return (refs.lightboxImageEl.src = images[i - 1].original);
+    }
   }
 }
 
