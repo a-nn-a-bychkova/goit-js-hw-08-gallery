@@ -107,6 +107,8 @@ function closeModal() {
   refs.modalEl.classList.remove('is-open');
   refs.lightboxImageEl.src = '';
   refs.lightboxImageEl.alt = '';
+  window.removeEventListener('keydown', onEscKeyPress);
+  window.removeEventListener('keydown', onKeyPress);
 }
 
 // Разбей задание на несколько подзадач:
