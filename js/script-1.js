@@ -41,7 +41,6 @@ refs.galleryContainer.insertAdjacentHTML('beforeend', listImagesMarkup);
 console.log(refs.modalEl);
 
 function onContainerClickOpenModal(evt) {
-  console.log(evt);
   evt.preventDefault();
   if (!evt.target.classList.contains('gallery__image')) {
     return;
@@ -55,8 +54,6 @@ function onContainerClickOpenModal(evt) {
 }
 
 function onKeyPress(evt) {
-  console.log(evt.code);
-
   if (evt.code === 'ArrowRight') {
     findNextImage(images);
   } else if (evt.code === 'ArrowLeft') {
@@ -90,23 +87,23 @@ function onClickButtonCloseModal(evt) {
   if (!evt.target.classList.contains('lightbox__button')) {
     return;
   }
-  onCloseModal();
+  closeModal();
 }
 
 function onOverlayClick(evt) {
   if (!evt.target.classList.contains('lightbox__overlay')) {
     return;
   }
-  onCloseModal();
+  closeModal();
 }
 
 function onEscKeyPress(evt) {
   if (evt.code === 'Escape') {
-    onCloseModal();
+    closeModal();
   }
 }
 
-function onCloseModal() {
+function closeModal() {
   refs.modalEl.classList.remove('is-open');
   refs.lightboxImageEl.src = '';
   refs.lightboxImageEl.alt = '';
